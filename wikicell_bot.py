@@ -7,7 +7,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 # دستور /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text" سلام! 👋 من ویکی‌سل‌بات هستم، هرچی میخوای کافیه بگی  🌿")
+    await update.message.reply_text("سلام! 👋 من ویکی‌سل‌بات هستم، هرچی میخوای کافیه بگی 🌿")
 
 # دستور /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
