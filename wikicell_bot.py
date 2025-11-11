@@ -1,31 +1,25 @@
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import os
 
-# توکن رو از متغیر محیطی بگیر (ایمن‌تر از اینکه مستقیم بنویسی)
+# گرفتن توکن از متغیر محیطی
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-# تابع /start
+# دستور /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_firstname = update.effective_user.first_name
-    await update.message.reply_text(f"سلام {user_firstname}! 👋\nبه WikiCell Bot خوش اومدی 🌐")
+    await update.message.reply_text" سلام! 👋 من ویکی‌سل‌بات هستم، هرچی میخوای کافیه بگی  🌿")
 
-# تابع /help
+# دستور /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("دستورهای موجود:\n/start - شروع بات\n/help - راهنما")
+    await update.message.reply_text("دستورات فعلی:\n/start - شروع\n/help - راهنما")
 
+# تابع اصلی
 def main():
-    if not BOT_TOKEN:
-        print("❌ BOT_TOKEN تنظیم نشده. لطفاً در تنظیمات Render متغیر محیطی اضافه کن.")
-        return
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
 
-    app = Application.builder().token(BOT_TOKEN).build()
-
-    # ثبت دستورها
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_command))
 
-    print("✅ Bot started...")
     app.run_polling()
 
 if __name__ == "__main__":
